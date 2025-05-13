@@ -1,0 +1,63 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: physiomobile-app
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    networks:
+      - physiomobile
+    depends_on:
+      - mysql
+  pma:
+    image: phpmyadmin/phpmyadmin
+    container_name: physiomobile-pma
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: password
+    ports:
+      - "8002:80"
+    networks:
+      - physiomobile
+    depends_on:
+      - mysql
+  nginx:
+    image: nginx:latest
+    container_name: physiomobile-nginx
+    ports:
+      - "8001:80"
+    volumes:
+      - ./:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - physiomobile
+    depends_on:
+      - app
+
+  mysql:
+    image: mysql:8
+    container_name: physiomobile-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: physiomobile
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - physiomobile
+
+networks:
+  physiomobile:
+
+
+volumes:
+  dbdata:

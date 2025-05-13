@@ -1,0 +1,281 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Physiomobile API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8001",
+            "description": "Local server"
+        }
+    ],
+    "paths": {
+        "/api/patient": {
+            "get": {
+                "summary": "Get all patients",
+                "operationId": "45c19ba8ac77ebb60204fa5235c2f1fa",
+                "parameters": [
+                    {
+                        "name": "accessKey",
+                        "in": "header",
+                        "description": "Access key for authentication use (123456)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "123456"
+                    },
+                    {
+                        "name": "page_size",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 10
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "accessKey": []
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Store a new patient",
+                "operationId": "8ca558a676f77b36fcd3169a83db07e4",
+                "parameters": [
+                    {
+                        "name": "accessKey",
+                        "in": "header",
+                        "description": "Access key for authentication use (123456)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "123456"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "id_type": {
+                                        "type": "string",
+                                        "example": "KTP"
+                                    },
+                                    "id_no": {
+                                        "type": "string",
+                                        "example": "123456789"
+                                    },
+                                    "gender": {
+                                        "type": "string",
+                                        "example": "male"
+                                    },
+                                    "dob": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "1990-01-01"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "123 Street"
+                                    },
+                                    "medium_acquisition": {
+                                        "type": "string",
+                                        "example": "Instagram"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "accessKey": []
+                    }
+                ]
+            }
+        },
+        "/api/patient/{id}": {
+            "get": {
+                "summary": "Get a patient by ID",
+                "operationId": "4c97f1a55f2bdbfbda6c79b0f03a4c3e",
+                "parameters": [
+                    {
+                        "name": "accessKey",
+                        "in": "header",
+                        "description": "Access key for authentication use (123456)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "123456"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "accessKey": []
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update a patient by ID",
+                "operationId": "5e2bd5a94dd2c92a6342194d3da440fb",
+                "parameters": [
+                    {
+                        "name": "accessKey",
+                        "in": "header",
+                        "description": "Access key for authentication use (123456)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "123456"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "id_type": {
+                                        "type": "string",
+                                        "example": "KTP"
+                                    },
+                                    "id_no": {
+                                        "type": "string",
+                                        "example": "123456789"
+                                    },
+                                    "gender": {
+                                        "type": "string",
+                                        "example": "male"
+                                    },
+                                    "dob": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "1990-01-01"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "123 Street"
+                                    },
+                                    "medium_acquisition": {
+                                        "type": "string",
+                                        "example": "Instagram"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "accessKey": []
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a patient by ID",
+                "operationId": "44533bac02e85549f8ecdd692891609d",
+                "parameters": [
+                    {
+                        "name": "accessKey",
+                        "in": "header",
+                        "description": "Access key for authentication use (123456)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "123456"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "accessKey": []
+                    }
+                ]
+            }
+        }
+    }
+}
