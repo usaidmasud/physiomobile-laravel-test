@@ -19,7 +19,11 @@ use Illuminate\Support\Str;
  *     version="1.0.0",
  * )
  * @OA\Server(
- *     url="http://localhost:8001",
+ *     url="https://physiomobile.syaripmasud.my.id",
+ *     description="Production server"
+ * )
+ * @OA\Server(
+ *     url="http://localhost:9008",
  *     description="Local server"
  * )
  */

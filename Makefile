@@ -1,6 +1,9 @@
 prod:
 	docker compose -f docker-compose-prod.yml up -d
-	
+
+prod-down:
+	docker compose -f docker-compose-prod.yml down -v
+
 build:
 	docker compose build --no-cache
 
