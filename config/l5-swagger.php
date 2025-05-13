@@ -4,8 +4,9 @@ return [
     'default' => 'default',
     'documentations' => [
         'default' => [
+            'url' => env('L5_SWAGGER_API_DOCS_URL', null),
             'api' => [
-                'title' => 'L5 Swagger UI',
+                'title' => 'Physiomobile API',
             ],
 
             'routes' => [
