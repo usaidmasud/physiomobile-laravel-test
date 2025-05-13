@@ -20,11 +20,11 @@ use Illuminate\Support\Str;
  * )
  * @OA\Server(
  *     url="https://physiomobile.syaripmasud.my.id",
- *     description="Production server"
+ *     description="production server"
  * )
  * @OA\Server(
  *     url="http://localhost:9008",
- *     description="Local server"
+ *     description="development server"
  * )
  */
 class PatientController extends Controller
